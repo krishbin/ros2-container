@@ -1,5 +1,5 @@
 ---
-    name: ros-container-builder
+    name: ros-container-builder-arm64
     on:
       pull_request:
         branches:
