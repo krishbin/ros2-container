@@ -97,6 +97,7 @@
               image: ${{ env.MY_IMAGE_NAME }}
               tags: ${{ steps.generate_tags.outputs.alias_tags }}
               labels: ${{ steps.meta.outputs.labels }}
+              archs: arm64
               oci: true
     
           - name: Lowercase Registry
