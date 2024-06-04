@@ -131,6 +131,6 @@ jobs:
         run: |
           cosign sign -y --key env://COSIGN_PRIVATE_KEY ${{ steps.lowercase_registry.outputs.lowercase }}/${{ steps.build_image.outputs.image }}@${TAGS}
         env:
-          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_KEY }}
+          COSIGN_PRIVATE_KEY: ${{ secrets.SIGNING_SECRET }}
           TAGS: ${{ steps.push_image.outputs.digest }}
           COSIGN_EXPERIMENTAL: false
