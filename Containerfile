@@ -1,0 +1,55 @@
+FROM docker.io/library/ubuntu:22.04 AS base
+ARG ROS_DISTRO="humble"
+ENV DEBIAN_FRONTEND=noninteractive
+# Install ROS
+RUN apt-get update && apt-get upgrade -y
+
+RUN locale
+
+RUN apt-get install -y \
+    curl \
+    gnupg2 \
+    lsb-release \
+    locales
+
+RUN locale-gen en_US en_US.UTF-8
+RUN update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+RUN export LANG=en_US.UTF-8
+RUN locale
+
+RUN apt install software-properties-common -y
+RUN add-apt-repository universe -y
+
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+RUN apt update && apt upgrade -y
+
+RUN apt install -y tzdata && \
+    ln -fs /usr/share/zoneinfo/Asia/Kathmandu /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN echo ${ROS_DISTRO}
+
+RUN apt install ros-${ROS_DISTRO}-desktop -y
+
+RUN apt install ros-dev-tools -y
+
+# add ros2 to bashrc in etc
+RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /etc/bashrc
+
+# install navigation2
+RUN apt install ros-${ROS_DISTRO}-navigation2 -y
+RUN apt install ros-${ROS_DISTRO}-nav2-bringup -y
+RUN apt install ros-${ROS_DISTRO}-turtlebot3-gazebo -y
+
+# install ros2 control
+RUN apt install ros-${ROS_DISTRO}-ros2-control -y
+RUN apt install ros-${ROS_DISTRO}-ros2-controllers -y
+
+# install support for oak-d camera
+RUN apt install ros-${ROS_DISTRO}-depthai-ros -y
+
+# install support for realsense camera
+RUN apt install ros-${ROS_DISTRO}-realsense2-camera -y
