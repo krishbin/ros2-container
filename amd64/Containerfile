@@ -54,3 +54,4 @@ RUN apt install ros-${ROS_DISTRO}-depthai-ros -y
 
 # install support for realsense camera
 RUN apt install ros-${ROS_DISTRO}-realsense2-camera -y
+RUN apt install ros-${ROS_DISTRO}-realsense2-camera -y
