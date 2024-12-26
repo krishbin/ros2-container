@@ -1,4 +1,4 @@
-FROM docker.io/library/ubuntu:22.04 AS base
+FROM docker.io/library/ubuntu:24.04 AS base
 ARG ROS_DISTRO="jazzy"
 ENV DEBIAN_FRONTEND=noninteractive
 # Install ROS
