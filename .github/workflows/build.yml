@@ -139,6 +139,7 @@ jobs:
           COSIGN_EXPERIMENTAL: false
 
   build_push_arm64:
+    if: false
     name: Build and push arm64 image
     runs-on: ubuntu-latest
     permissions:
