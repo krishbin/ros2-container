@@ -39,8 +39,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Apt Clean  
         run: sudo apt-get clean
-      - name: Checkout repository
-        run: actions/checkout@v2
         
       - name: Check disk space
         run: du -sh /usr/* 2>/dev/null || true
