@@ -33,6 +33,10 @@ jobs:
       id-token: write
 
     steps:
+      - name: Check disk space
+        run: |
+              df -h
+              du -sh ~/.*
       - name: Delete huge unnecessary tools folder
         run: rm -rf /opt/hostedtoolcach
 
