@@ -33,14 +33,16 @@ jobs:
       id-token: write
 
     steps:
+      
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
       - name: Check disk space
         run: du -sh /* 2>/dev/null || true
        
       - name: Delete huge unnecessary tools folder
         run: rm -rf /opt/hostedtoolcach
-
-      - name: Checkout repository
-        uses: actions/checkout@v2
 
       - name: Generate Tags
         id: generate_tags
