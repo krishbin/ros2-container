@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Check disk space
-        run: sudo du -sh /*
+        run: du -sh /* 2>/dev/null || true
        
       - name: Delete huge unnecessary tools folder
         run: rm -rf /opt/hostedtoolcach
