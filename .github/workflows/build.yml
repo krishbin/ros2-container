@@ -33,6 +33,9 @@ jobs:
       id-token: write
 
     steps:
+      - name: Delete huge unnecessary tools folder
+        run: rm -rf /opt/hostedtoolcach
+
       - name: Checkout repository
         uses: actions/checkout@v2
 
