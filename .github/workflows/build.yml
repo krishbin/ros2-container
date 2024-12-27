@@ -44,7 +44,7 @@ jobs:
         run: du -sh /usr/* 2>/dev/null || true
        
       - name: Delete huge unnecessary tools folder
-        run: rm -rf /opt/hostedtoolcach
+        run: rm -rf /opt/hostedtoolcache
         
       - name: Check disk space
         run: du -sh /opt/* 2>/dev/null || true
