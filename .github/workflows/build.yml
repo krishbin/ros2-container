@@ -37,12 +37,19 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v2
+      - name: Apt Clean  
+        run: sudo apt-get clean
+      - name: Checkout repository
+        run: actions/checkout@v2
         
       - name: Check disk space
-        run: du -sh /* 2>/dev/null || true
+        run: du -sh /usr/* 2>/dev/null || true
        
       - name: Delete huge unnecessary tools folder
         run: rm -rf /opt/hostedtoolcach
+        
+      - name: Check disk space
+        run: du -sh /opt/* 2>/dev/null || true
 
       - name: Generate Tags
         id: generate_tags
