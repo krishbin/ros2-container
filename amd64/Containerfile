@@ -39,7 +39,9 @@ RUN echo ${ROS_DISTRO}
 
 RUN apt install ros-${ROS_DISTRO}-desktop -y
 
-RUN apt install ros-dev-tools gz-harmonic ros-${rosdistro}-rosbridge-server -y
+RUN apt install ros-dev-tools -y
+RUN apt install gz-harmonic -y
+RUN apt install ros-${ROS_DISTRO}-rosbridge-server -y
 
 # add ros2 to bashrc in etc
 RUN echo "source /opt/ros/${ROS_DISTRO}/setup.bash" >> /etc/bashrc
